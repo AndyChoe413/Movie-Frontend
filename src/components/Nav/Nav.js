@@ -5,6 +5,7 @@ export class Nav extends Component {
   render() {
     //console.log(this.props);
 
+    //sets up name links to corresponding paths when clicked
     return (
       <nav className="Navbar">
         <div className="h1-logo">

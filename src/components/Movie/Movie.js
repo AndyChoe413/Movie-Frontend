@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+//sets state for movie component
 export class Movie extends Component {
   state = {
     movie: "",
     movieArray: [],
   };
-
+//sets movie state on change
   handleOnChange = (event) => {
     this.setState({
       movie: event.target.value,
     });
   };
-
+//make axios call to api on submit and sets state ov movie array
   onSubmit = async (event) => {
     try {
       let result = await axios.get(
@@ -29,7 +29,7 @@ export class Movie extends Component {
       console.log(e);
     }
   };
-
+//function to display list of movies from movie array state
   showMovieList = () => {
     return this.state.movieArray.map((item) => {
       return (
@@ -55,7 +55,7 @@ export class Movie extends Component {
       );
     });
   };
-
+//renders everything into the DOM
   render() {
     console.log(this.props);
 

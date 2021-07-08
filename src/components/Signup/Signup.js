@@ -1,3 +1,4 @@
+//brings in all middleware and file paths
 import React, { Component } from "react";
 import jwtDecode from "jwt-decode";
 import { isAlpha, isEmail, isAlphanumeric, isStrongPassword } from "validator";
@@ -5,7 +6,7 @@ import { toast } from "react-toastify";
 import Axios from "../utils/Axios";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
 import "./Signup.css";
-
+//set states
 export class Signup extends Component {
   state = {
     firstName: "",
@@ -28,7 +29,7 @@ export class Signup extends Component {
     passwordOnFocus: false,
     confirmPasswordOnFocus: false,
   };
-
+//checks if user is authorized and if so add to history
   componentDidMount() {
     let isAuth = checkIfUserIsAuth();
 
@@ -36,7 +37,7 @@ export class Signup extends Component {
       this.props.history.push("/movie");
     }
   }
-
+//sets state for all input fields
   handleOnChange = (event) => {
     this.setState(
       {
@@ -67,7 +68,7 @@ export class Signup extends Component {
       }
     );
   };
-
+//checks if password and confirmed password match
   handleConfirmPasswordInput = () => {
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
@@ -80,7 +81,7 @@ export class Signup extends Component {
       });
     }
   };
-
+//handles the password input
   handlePasswordInput = () => {
     if (this.state.confirmPasswordOnFocus) {
       if (this.state.password !== this.state.confirmPassword) {
@@ -114,7 +115,7 @@ export class Signup extends Component {
       }
     }
   };
-
+//handles email input
   handleEmailInput = () => {
     if (this.state.email.length === 0) {
       this.setState({
@@ -134,7 +135,7 @@ export class Signup extends Component {
       }
     }
   };
-
+//handles first name and last name input
   handleFirstNameAndLastNameInput = (event) => {
     if (this.state[event.target.name].length > 0) {
       if (isAlpha(this.state[event.target.name])) {
@@ -154,7 +155,7 @@ export class Signup extends Component {
       });
     }
   };
-
+//handles username input
   handleUsernameInput = () => {
     if (this.state.username.length === 0) {
       this.setState({
@@ -174,7 +175,7 @@ export class Signup extends Component {
       }
     }
   };
-
+//handles on submit 
   handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -193,7 +194,7 @@ export class Signup extends Component {
       toast.error(`${e.response.data.message}`);
     }
   };
-
+//handles on blur
   handleOnBlur = (event) => {
     // console.log(event.target.name);
     // console.log("handle onBlur Triggered");
@@ -204,7 +205,7 @@ export class Signup extends Component {
       });
     }
   };
-
+//checks if all input fields are correct it will turn the submit button on
   componentDidUpdate(prevProps, prevState) {
     console.log(prevState.isButtonDisabled);
 
@@ -233,7 +234,7 @@ export class Signup extends Component {
       }
     }
   }
-
+//handles on focus
   handleInputOnFocus = (event) => {
     if (!this.state[`${event.target.name}OnFocus`]) {
       this.setState({
@@ -241,7 +242,7 @@ export class Signup extends Component {
       });
     }
   };
-
+//renders everything onto the come giving all functionality to our functions above
   render() {
     const {
       firstName,

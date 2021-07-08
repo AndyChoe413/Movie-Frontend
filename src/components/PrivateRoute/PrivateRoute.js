@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
-
+//sets a private route to be used for login
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route

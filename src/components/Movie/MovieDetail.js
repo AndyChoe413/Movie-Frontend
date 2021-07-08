@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+//sets states
 export class MovieDetail extends Component {
   state = {
     Actors: "",
@@ -14,13 +14,13 @@ export class MovieDetail extends Component {
     imdbID: "",
     isLoading: true,
   };
-
+//makes axios call for movie titles
   async componentDidMount() {
     try {
       let result = await axios.get(
         `https://omdbapi.com/?apikey=6332b1e1&t=${this.props.match.params.movieTitle}`
       );
-
+//sets states for all fields we want to pull
       this.setState({
         Actors: result.data.Actors,
         Awards: result.data.Awards,
@@ -39,7 +39,7 @@ export class MovieDetail extends Component {
       console.log(e);
     }
   }
-
+//function to display movie details
   showMovieDetail = () => {
     return (
       <div style={{ display: "flex" }}>
@@ -69,7 +69,7 @@ export class MovieDetail extends Component {
       </div>
     );
   };
-
+//renders the movie details function onto the dom
   render() {
     return (
       <div>

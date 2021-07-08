@@ -1,3 +1,4 @@
+//brings in all middleware and mainware
 import React, { Component } from "react";
 import { ToastContainer } from "react-toastify";
 import jwtDecode from "jwt-decode";
@@ -10,7 +11,7 @@ export class App extends Component {
   state = {
     user: null,
   };
-
+//grabs token from local storage and checks if it has expired
   componentDidMount() {
     let getJwtToken = window.localStorage.getItem("jwtToken");
 
@@ -34,7 +35,7 @@ export class App extends Component {
       // console.log("decodedJWTToken", decodedJWTToken);
     }
   }
-
+//sets state with user email for login
   handleUserLogin = (user) => {
     this.setState({
       user: {
@@ -42,7 +43,7 @@ export class App extends Component {
       },
     });
   };
-
+//handles user logout and removes token from local storage
   handleUserLogout = () => {
     window.localStorage.removeItem("jwtToken");
     this.setState({
@@ -53,8 +54,9 @@ export class App extends Component {
   render() {
     return (
       <>
+        {/* sets toastcontainer component */}
         <ToastContainer position="top-center" />
-
+        {/* sets mainrouter component and brings in states for user, login and log out */}
         <MainRouter
           user={this.state.user}
           handleUserLogin={this.handleUserLogin}

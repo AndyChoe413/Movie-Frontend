@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-
+//checks users token is expired or not
 const checkIfUserIsAuth = () => {
   //check if token exists, if it doesnt exists return false
   //if it does exists, check if token valid (meaning not expired)

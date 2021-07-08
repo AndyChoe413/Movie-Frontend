@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+//brings in middleware
 import { isEmpty, isEmail } from "validator";
 import jwtDecode from "jwt-decode";
 
@@ -7,6 +8,7 @@ import Axios from "../utils/Axios";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
 
 import "./Login.css";
+//sets states in component
 export class Login extends Component {
   state = {
     email: "",
@@ -17,7 +19,7 @@ export class Login extends Component {
     passwordOnFocus: false,
     canSubmit: true,
   };
-
+//checks if user is authorized and adds to history if true
   componentDidMount() {
     let isAuth = checkIfUserIsAuth();
 
@@ -25,7 +27,7 @@ export class Login extends Component {
       this.props.history.push("/movie");
     }
   }
-
+//handles state on changes to inputs
   handleOnChange = (event) => {
     this.setState(
       {
@@ -60,7 +62,7 @@ export class Login extends Component {
       }
     );
   };
-
+//checks if input fields have been filled
   componentDidUpdate(prevProps, prevState) {
     if (prevState.canSubmit === true) {
       if (this.state.emailOnFocus && this.state.passwordOnFocus) {
@@ -79,7 +81,7 @@ export class Login extends Component {
       }
     }
   }
-
+//checks if input fields are filled 
   handleInputOnFocus = (event) => {
     if (!this.state[`${event.target.name}OnFocus`]) {
       this.setState({
@@ -87,7 +89,7 @@ export class Login extends Component {
       });
     }
   };
-
+//checks if token if correct and user inputs are filled before submitting to axios
   handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -117,7 +119,7 @@ export class Login extends Component {
       }
     }
   };
-
+//renders all the information to dom while passing in all functions and components
   render() {
     const { email, emailError, password, passwordError, canSubmit } =
       this.state;
